@@ -3,3 +3,13 @@
 ################################################################################
 
 /.vs
+/DataRetrieve.SqlHelper/obj
+/DataRetrieve.Model/obj
+/DataRetrieve.MiddleWare/obj
+/DataRetrieve.LogHelper/obj
+/DataRetrieve.Filter/obj
+/DataRetrieve.DataAccess/obj
+/DataRetrieve.ConfigHelper/obj
+/DataRetrieve.BusinessLogic/obj
+/DataRetrieve/obj
+/Capital.Library/obj
