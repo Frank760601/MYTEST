@@ -1,0 +1,33 @@
+﻿@charset "UTF-8";
+
+@media (max-width: 767px) {
+    #pagination {
+        text-align: center
+    }
+    #PaginationInfo {
+        text-align: center
+    }
+}
+@media (min-width: 768px) {
+    #PaginationInfo {
+        text-align: right
+    }
+    .dataTables_info {
+        padding-right:20px
+    }
+
+    #pagination {
+        text-align: left;
+        padding-left:25px;
+    }
+}
+
+.portlet.light {
+    padding: 5px 5px 5px;
+    background-color: #fff;
+}
+@media (min-width: 768px) {
+    .QueryRow {
+        margin-top: 10px!important
+    }
+}

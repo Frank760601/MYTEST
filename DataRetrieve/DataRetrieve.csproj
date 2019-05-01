@@ -1,0 +1,81 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Helper\**" />
+    <Compile Remove="Helpler\**" />
+    <Compile Remove="LogFiles\**" />
+    <Content Remove="Helper\**" />
+    <Content Remove="Helpler\**" />
+    <Content Remove="LogFiles\**" />
+    <EmbeddedResource Remove="Helper\**" />
+    <EmbeddedResource Remove="Helpler\**" />
+    <EmbeddedResource Remove="LogFiles\**" />
+    <None Remove="Helper\**" />
+    <None Remove="Helpler\**" />
+    <None Remove="LogFiles\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Middleware.cs" />
+    <Compile Remove="UserAuthorizeAttribute.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\images\index.earth-globe-map-spinner.svg" />
+    <Content Remove="wwwroot\images\index.flask-loader.svg" />
+    <Content Remove="wwwroot\images\index.futuristic-game-interface-preloader.svg" />
+    <Content Remove="wwwroot\images\index.hourglass-time-loading-gif.svg" />
+    <Content Remove="wwwroot\images\index.rotate-pie-preloader-gif.svg" />
+    <Content Remove="wwwroot\images\index.scratching-reveal-loader.svg" />
+    <Content Remove="wwwroot\images\index.squiggly-text-preloader.svg" />
+    <Content Remove="wwwroot\images\index.sunflag-ajax-spinner.svg" />
+    <Content Remove="wwwroot\images\index.triple-gears-loading-icon %281%29.svg" />
+    <Content Remove="wwwroot\images\index.triple-gears-loading-icon.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="1.50.5" />
+    <PackageReference Include="DotNetCore.NPOI" Version="1.2.0" />
+    <PackageReference Include="log4net" Version="2.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.jQuery.Unobtrusive.Ajax" Version="3.2.5" />
+    <PackageReference Include="NLog" Version="4.5.8" />
+    <PackageReference Include="PagedList.Core.Mvc" Version="1.2.0" />
+    <PackageReference Include="System.Net.Http.WinHttpHandler" Version="4.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Capital.Library\Capital.Library.csproj" />
+    <ProjectReference Include="..\DataRetrieve.BusinessLogic\DataRetrieve.BusinessLogic.csproj" />
+    <ProjectReference Include="..\DataRetrieve.ConfigHelper\DataRetrieve.ConfigHelper.csproj" />
+    <ProjectReference Include="..\DataRetrieve.DataAccess\DataRetrieve.DataAccess.csproj" />
+    <ProjectReference Include="..\DataRetrieve.Filter\DataRetrieve.Filter.csproj" />
+    <ProjectReference Include="..\DataRetrieve.LogHelper\DataRetrieve.LogHelper.csproj" />
+    <ProjectReference Include="..\DataRetrieve.MiddleWare\DataRetrieve.MiddleWare.csproj" />
+    <ProjectReference Include="..\DataRetrieve.Model\DataRetrieve.Model.csproj" />
+    <ProjectReference Include="..\DataRetrieve.SqlHelper\DataRetrieve.SqlHelper.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="log4net.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Views\InvestmentTrust\Edit.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\InvestmentTrust\Index.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\InvestmentTrust\_PartialIndex.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
+</Project>

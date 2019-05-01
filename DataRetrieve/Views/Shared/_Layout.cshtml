@@ -1,0 +1,330 @@
+﻿@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Http.Features
+@using DataRetrieve.LogHelper;
+@inject IEmployee _emp
+@inject IHttpContextAccessor _httpContextAccessor
+@{ 
+    ILog _log = ILogHelper.GetLog("Log4Net");
+    _log.Debug(User.Identity.IsAuthenticated?"1":"0");
+    _log.Debug(_emp.RoleCode);
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <!---->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/lib/kendo/css/kendo.common-bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/kendo/css/kendo.bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/kendo/css/kendo.dataviz.bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/kendo/css/kendo.dataviz.min.css" />
+
+    <link href="~/package/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/package/bootstrap-switch.min.css" rel="stylesheet" />
+    <link href="~/package/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/package/components.min.css" rel="stylesheet" />
+    <link href="~/package/css.css" rel="stylesheet" />
+    <link href="~/package/layout.min.css" rel="stylesheet" />
+    <link href="~/package/select2-bootstrap.min.css" rel="stylesheet" />
+    <link href="~/package/select2.min.css" rel="stylesheet" />
+    <link href="~/package/darkblue.min.css" rel="stylesheet" type="text/css" id="style_color" />
+    @*<link href="~/package/plugins.min.css" rel="stylesheet" />*@
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <link href="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/site.css" />
+    @*<link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css" />*@
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link href="~/css/sweetalert2.css" rel="stylesheet" />
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/lib/kendo/js/kendo.all.min.js"></script>
+    <script src="~/lib/kendo/js/kendo.aspnetmvc.min.js"></script>
+    <script src="~/lib/kendo/js/kendo.web.min.js"></script>
+    <script src="~/lib/kendo/js/kendo.timezones.min.js"></script>
+    <script src="~/lib/kendo/js/jszip.min.js"></script>
+    <script src="~/lib/kendo/js/cultures/kendo.culture.zh-TW.min.js"></script>
+    <script src="~/lib/kendo/js/messages/kendo.messages.zh-TW.min.js"></script>
+    @*<script src="~/package/additional-methods.min.js"></script>*@
+    <script src="~/package/bootstrap.min.js" type="text/javascript"></script>
+    <script src="~/package/js.cookie.min.js" type="text/javascript"></script>
+    <script src="~/package/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="~/package/jquery.blockui.min.js" type="text/javascript"></script>
+    @*<script src="~/package/bootstrap-switch.min.js" type="text/javascript"></script>*@
+    <!-- END CORE PLUGINS -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script src="~/package/select2.full.min.js" type="text/javascript"></script>
+    <script src="~/package/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="~/package/additional-methods.min.js" type="text/javascript"></script>
+    <script src="~/package/jquery.bootstrap.wizard.min.js" type="text/javascript"></script>
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN THEME GLOBAL SCRIPTS -->
+    <script src="~/package/app.min.js" type="text/javascript"></script>
+    <!-- END THEME GLOBAL SCRIPTS -->
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <script src="~/package/form-wizard.min.js" type="text/javascript"></script>
+    <!-- END PAGE LEVEL SCRIPTS -->
+    <!-- BEGIN THEME LAYOUT SCRIPTS -->
+    <script src="~/package/layout.min.js" type="text/javascript"></script>
+    <script src="~/package/demo.min.js" type="text/javascript"></script>
+    <script src="~/package/quick-sidebar.min.js" type="text/javascript"></script>
+    <script src="~/package/quick-nav.min.js" type="text/javascript"></script>
+    <script src="~/package/jquery.easypiechart.min.js"></script>
+    <script src="~/lib/Microsoft.jQuery.Unobtrusive.Ajax/jquery.unobtrusive-ajax.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
+    <script src="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>
+    @*<script type="text/javascript" src="js/bootstrap-multiselect.js"></script>*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/js/bootstrap-select.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+    <script src="~/js/sweetalert2.all.js"></script>
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+</head>
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
+    <div class="page-wrapper">
+        <!-- BEGIN HEADER -->
+        <div class="page-header navbar navbar-fixed-top">
+            <!-- BEGIN HEADER INNER -->
+            <div class="page-header-inner ">
+                <!-- BEGIN LOGO -->
+                <div class="page-logo">
+                    <a href="/Home/Index">
+                        <img src="~/images/logo-middle.png" />
+                    </a>
+                    <div class="menu-toggler sidebar-toggler">
+                        <span></span>
+                    </div>
+                </div>
+                <!-- END LOGO -->
+                <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+                <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span></span>
+                </a>
+                <!-- END RESPONSIVE MENU TOGGLER -->
+                <!-- BEGIN TOP NAVIGATION MENU -->
+                <div class="top-menu" style="color:white">
+                    <ul class="nav navbar-nav pull-right">
+                       
+                        
+                    </ul>
+                </div>
+                <!-- END TOP NAVIGATION MENU -->
+            </div>
+            <!-- END HEADER INNER -->
+        </div>
+        <!-- END HEADER -->
+        <!-- BEGIN HEADER & CONTENT DIVIDER -->
+        <div class="clearfix" style="background-color:#2B3643"> </div>
+        <!-- END HEADER & CONTENT DIVIDER -->
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN SIDEBAR -->
+            <div class="page-sidebar-wrapper">
+                <!-- BEGIN SIDEBAR -->
+                <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+                <!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+                <div class="page-sidebar navbar-collapse collapse" style="margin-top:0px">
+                    <!-- BEGIN SIDEBAR MENU -->
+                    <!-- DOC: Apply "page-sidebar-menu-light" class right after "page-sidebar-menu" to enable light sidebar menu style(without borders) -->
+                    <!-- DOC: Apply "page-sidebar-menu-hover-submenu" class right after "page-sidebar-menu" to enable hoverable(hover vs accordion) sub menu mode -->
+                    <!-- DOC: Apply "page-sidebar-menu-closed" class right after "page-sidebar-menu" to collapse("page-sidebar-closed" class must be applied to the body element) the sidebar sub menu mode -->
+                    <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+                    <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
+                    <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+                    <ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
+                        <!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
+                        <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                        <li class="sidebar-toggler-wrapper hide">
+                            <div class="sidebar-toggler">
+                                <span></span>
+                            </div>
+                        </li>
+                        <!-- END SIDEBAR TOGGLER BUTTON -->
+                        <!-- DOC: To remove the search box from the sidebar you just need to completely remove the below "sidebar-search-wrapper" LI element -->
+                        <li class="sidebar-search-wrapper">
+                            <form class="sidebar-search  " action="page_general_search_3.html" method="POST">
+                                <a href="javascript:;" class="remove">
+                                    <i class="icon-close"></i>
+                                </a>
+                                <div class="input-group" style="margin-top:10px">
+                                    <input type="text" class="form-control" placeholder="Search...">
+                                    <span class="input-group-btn">
+                                        <a href="javascript:;" class="btn submit">
+                                            <i class="fa fa-search"></i>
+                                        </a>
+                                    </span>
+                                </div>
+                            </form>
+                            <!-- END RESPONSIVE QUICK SEARCH FORM -->
+                        </li>
+                        @await Component.InvokeAsync("LayoutView")
+                    </ul>
+                    <!-- END SIDEBAR MENU -->
+                    <!-- END SIDEBAR MENU -->
+                </div>
+                <!-- END SIDEBAR -->
+            </div>
+            <!-- END QUICK SIDEBAR -->
+            <div class="page-content-wrapper" style="height:auto">
+                <div class="page-content">
+                    @*@if (!(new string[] { "Home", "Error" }).Contains(ViewContext.RouteData.Values["controller"].ToString()))
+                    {
+                    <div class="page-bar">
+                        <ul class="page-breadcrumb">
+                            
+                                @await Component.InvokeAsync("LayoutViewMap", new { Url = "/" + @ViewContext.RouteData.Values["controller"] + "/" + @ViewContext.RouteData.Values["action"] })
+                            
+                        </ul>
+                    </div>
+                    }*@
+                    <h1 class="page-title" style="font-family:'微軟正黑體';margin:20px 0px 20px 0px">
+                        @ViewBag.SiteMapHead
+                    </h1>
+                    @RenderBody()
+                </div>
+                @*<footer style="color:white;font-family:'微軟正黑體';text-align:center">
+                    <p>群益金融集團 版權所有&copy;&nbsp;2017 The Capital Group All Rights Reserved. </p>
+                </footer>*@
+            </div>
+
+        </div>
+        <div class="page-footer">
+            <div class="page-footer-inner" style="color:white;font-family:'微軟正黑體';margin:0 auto;">群益金融集團 版權所有&copy;&nbsp;2017 The Capital Group All Rights Reserved.</div>
+        </div>
+        <!-- END CONTAINER -->
+        <!-- BEGIN FOOTER -->
+        <!-- END FOOTER -->
+    </div>
+
+
+    @RenderSection("Scripts", required: false)
+    <style>
+        .sweet-alert .sa-icon.sa-info::after {
+            left: 50%
+        }
+        .top-menu > ul > li > a:hover, .top-menu > ul > li > a:focus, .top-menu > ul > li > a {
+            color: white;
+            background-color: transparent
+        }
+    </style>
+    <style>
+        .popover.bottom > .arrow:after {
+            border-bottom-color: #2B3643;
+        }
+        .popover-content {
+            background-color: #2B3643;
+        }
+        .page-breadcrumb > li > a {
+            text-decoration:none;
+        }
+        .page-footer {
+            left: 0;
+            right: 0;
+            z-index: 9999999;
+            bottom: 0;
+            background-color: #2B3643;
+            margin: 0 auto;
+        }
+    </style>
+    <script>
+        $(function () {
+             $('#btn_simfunc').click(function () {
+                    var func = $(this).data('func');
+                    if (func == "logout") {
+                        $.post("@Url.Action("SimulationLogout", "Simulate")", function (data) {
+                            if (data == "OK") {
+                                location.reload(true);
+                            } else {
+                                console.log("ERROR: " + data.ERROR);
+                            }
+                            location.reload(true);
+                        });
+                    } else if (func == "login") {
+                        var empno = $('#txt_simempno').val();
+                        $.post("@Url.Action("SimulationLogin", "Simulate")", { EmpNo: empno }, function (data) {
+                            if (data.ERROR != undefined) {
+                                console.log("ERROR: " + data.ERROR);
+                                //$.SmartMessageBox({
+                                //    title: "ERROR!!!",
+                                //    content: "系統異常，請聯絡資訊部為您服務，謝謝！",//data.ERROR,
+                                //    buttons: '[OK]'
+                                //});
+                            } else {
+                                location.reload(true);
+                            }
+                        });
+                    }
+            });
+
+            var obj = {};
+            $("page-wrapper > .active,.open").removeClass("active open")
+            $("page-wrapper > .selected").remove();
+            var Cpath = "/@ViewContext.RouteData.Values["controller"]";
+            var CApath = "/@ViewContext.RouteData.Values["controller"]/@ViewContext.RouteData.Values["action"]";
+
+            if (localStorage['visited'] != '') { 
+                //console.log("a[href*='" + localStorage['visited'] + "']");
+                obj = $("a[href*='" + localStorage['visited'] + "']")
+            }
+            else if ($("a[href*='" + CApath + "']").length > 0) {
+                //console.log("a[href*='" + CApath + "']");
+                obj = $("a[href*='" + CApath + "']")
+            }
+            else if ($("a[href*='" + Cpath + "']").length > 0) {
+                //console.log("a[href*='" + Cpath + "']");
+                obj = $("a[href*='" + Cpath + "']")
+            }
+            $(obj).parents(".nav-item").addClass("active open")
+            var parents = $(obj).parent(".nav-item").parents(".nav-item");
+            $(parents).find("a:eq(0)").find(".arrow").addClass("open");
+            $(parents).find("a:eq(0)").find("span:eq(0)").after("<span class='selected'></span>");
+            localStorage['visited'] = '';
+        })
+
+        function Block() {
+            $('#content').block({
+                message: "<img src='/images/lg.searching-for-loading-icon.gif' style='width:30%;' />",
+                //borderWidth:'0px' 和透明背景
+                css: { borderWidth: '0px', backgroundColor: 'transparent' },
+            });
+        }
+
+        $(document).ready(function () {
+            $('.danger').popover({
+                html: true,
+                content: function () {
+                    return $('#popover_content_wrapper').html();
+                }
+            });
+            //console.log(localStorage['visited']);
+            $(".page-sidebar-menu").find(".sub-menu").find('a').on('click', function () { 
+                localStorage['visited'] = $(this).attr('href');
+            })
+        });
+    </script>
+    <!-- Google Code for Universal Analytics -->
+
+</body>
+</html>
+
+<div id="popover_content_wrapper" style="display: none">
+    <div class="popover-inner" style="width:200px;color:white">
+        <div class="list-block">
+            <ul style="padding:0%;list-style-type:none;font-family:'微軟正黑體';line-height:22px">
+                <li><span style="color:#66B2F4;font-weight:600">RoleCode：</span>@_emp.RoleCode&nbsp;@_emp.RoleName</li>
+                <li><span style="color:#66B2F4;font-weight:600">PositionCode：</span>@_emp.PositionCode&nbsp;@_emp.PositionName</li>
+                <li><span style="color:#66B2F4;font-weight:600">Unit：</span>@_emp.Unit&nbsp;@_emp.UnitName</li>
+                <li><span style="color:#66B2F4;font-weight:600">Client IP：</span>@_emp.ClientIP</li>
+                <li><span style="color:#66B2F4;font-weight:600">Server：</span>@System.Net.Dns.GetHostName()</li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="PagedList.Core.Mvc" Version="1.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DataRetrieve.DataAccess\DataRetrieve.DataAccess.csproj" />
+    <ProjectReference Include="..\DataRetrieve.LogHelper\DataRetrieve.LogHelper.csproj" />
+    <ProjectReference Include="..\DataRetrieve.Model\DataRetrieve.Model.csproj" />
+  </ItemGroup>
+
+</Project>

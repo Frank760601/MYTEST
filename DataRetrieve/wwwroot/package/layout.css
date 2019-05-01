@@ -1,0 +1,21 @@
+﻿@media (min-width: 1200px) {
+    .container {
+        width: 100%;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        width: 100%;
+    }
+}
+
+.body-content {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.page-header.navbar .page-logo {
+    padding-left: 0px;
+    padding-right: 0px;
+}

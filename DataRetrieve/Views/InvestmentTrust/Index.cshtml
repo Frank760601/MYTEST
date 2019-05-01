@@ -1,0 +1,95 @@
+﻿@using DataRetrieve.Controllers
+@using System.Reflection
+@{
+    ViewData["Title"] = "群益投信客戶維護";
+    ViewBag.SiteMapHead = "群益投信客戶維護";
+    PropertyInfo[] temp = ViewBag.Msg != null ? ViewBag.Msg.GetType().GetProperties() : null;
+    string MsgCode = (temp == null?string.Empty:(temp[0].GetValue(ViewBag.Msg)).ToString());
+    string MsgName = (temp == null?string.Empty:(temp[1].GetValue(ViewBag.Msg)).ToString());
+
+}
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Metronic Admin Theme #1 | Bootstrap Form Wizard</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="Preview page of Metronic Admin Theme #1 for bootstrap form wizard demos using Twitter Bootstrap Wizard Plugin" name="description" />
+    <meta content="" name="author" />
+    <link href="~/package/AccountAudit.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/css/bootstrap-select.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+    <div class="row">
+        <form asp-controller="InvestmentTrust" asp-action="PartialIndex" data-ajax="true" enctype="multipart/form-data" data-ajax-method="POST" data-ajax-mode="replace" data-ajax-update="#content">
+            @Html.Hidden("vNO")
+            @Html.Hidden("vIDNO")
+            @Html.Hidden("vNAME")
+            <div class="col-md-8">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">查詢條件</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div>
+                            <div>
+                                <div class="col-md-2 col-xs-12" style="padding:0%!important">
+                                    <div class="col-md-4 col-xs-12" style="float:left;margin-top:5px;padding:0%">編號：</div>
+                                    <div class="col-md-8 col-xs-12" style="padding:0%">
+                                        @Html.TextBox("NO", null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="col-md-5 col-xs-12" style="padding:0%!important">
+                                    <div class="col-md-6 col-xs-12" style="float:left;margin-top:5px;padding:0%">身份證字號或營利事業統一編號：</div>
+                                    <div class="col-md-6 col-xs-12" style="padding:0%">
+                                        <div class="col-md-11 col-xs-12" style="padding:0%!important">
+                                            @Html.TextBox("IDNO", null, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-xs-12" style="padding:0%!important">
+                                    <div class="col-md-3 col-xs-12" style="float:left;margin-top:5px;padding:0%">客戶名稱：</div>
+                                    <div class="col-md-7 col-xs-12" style="padding:0%">
+                                        @Html.TextBox("NAME", null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-xs-12" style="margin-top:5px;padding:0px!important">
+                                <input type="button" name="txbSearch" id="txbSearch" value="查詢" class="btn btn-default">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @Html.Hidden("page")
+            <input type="submit" value="Search Books" style="display:none" onclick="" />
+
+        </form>
+    </div>
+    <a href="@Url.Action("Edit")" class="btn btn-outline btn-circle dark btn-sm blue" style="width:80px!important;"><i class="fa fa-calendar-plus-o"></i> 新增</a>
+    <div id="content" style="margin-top:10px"></div>
+
+</body>
+
+</html>
+
+<script>
+    var FirstTime = true;
+    var code = "";
+    $(function () {
+        if ('@Html.Raw(MsgCode)') {
+            swal("群益投信客戶", "新增"+'@Html.Raw(MsgName)'+"！", '@Html.Raw(MsgCode)'.toUpperCase() == "TRUE"?"success":"error");
+        }
+        $("[name=txbSearch]").click(function (event) {
+            $("[name=page]").val(1)
+            $("[name=vNO]").val($("[name=NO]").val())
+            $("[name=vIDNO]").val($("[name=IDNO]").val())
+            $("[name=vNAME]").val($("[name=NAME]").val())
+            $("[type=submit]").click()
+        }).click();
+        
+    })
+    
+</script>

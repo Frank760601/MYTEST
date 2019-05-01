@@ -1,0 +1,91 @@
+﻿@charset "UTF-8";
+@media (min-width: 1200px){
+    .container {
+    width: 100%;
+    }
+}
+@media (min-width: 992px) {
+    .container {
+        width: 100%;
+    }
+}
+/*@media (min-width: 992px) {
+    .col-md-3 {
+        width: 32%;
+    }
+}*/
+@media (min-width: 992px) {
+    .col-md-offset-3 {
+        margin-left: 26%;
+    }
+}
+@media (min-width: 768px) {
+    .form-horizontal .control-label {
+        padding-top: 0px;
+    }
+
+    div[data-toggle="buttons"] label.active {
+        color: #003C9D;
+    }
+
+    div[data-toggle="buttons"] label {
+        color: #333;
+        font-size: 10px;
+    }
+
+    input[type=radio].css-checkbox {
+        position: absolute;
+        z-index: -1000;
+        left: -1000px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        width: 1px;
+        margin: -1px;
+        padding: 0;
+        border: 0;
+    }
+
+        input[type=radio].css-checkbox + label.css-label {
+            padding-left: 27px;
+            height: 23px;
+            display: inline-block;
+            line-height: 23px;
+            background-repeat: no-repeat;
+            background-position: 0 0;
+            font-size: 23px;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+
+        input[type=radio].css-checkbox:checked + label.css-label {
+            background-position: 0 -23px;
+        }
+
+    label.css-label {
+        background-image: url(http://csscheckbox.com/checkboxes/u/csscheckbox_277f6c2a2554ba0ad9914f660d37291b.png);
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    label {
+        margin-right: 20px;
+    }
+
+    label {
+        transition: color .3s;
+    }
+
+    #CustPro label:hover {
+        color: royalblue;
+    }
+
+    #disc {
+        transition: color .3s;
+    }
+
+    
