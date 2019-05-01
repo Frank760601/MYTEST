@@ -13,3 +13,13 @@
 /DataRetrieve.BusinessLogic/obj
 /DataRetrieve/obj
 /Capital.Library/obj
+/DataRetrieve.SqlHelper/bin/Debug/netcoreapp2.1
+/DataRetrieve.Model/bin/Debug/netstandard2.0
+/DataRetrieve.MiddleWare/bin/Debug/netcoreapp2.1
+/DataRetrieve.LogHelper/bin/Debug/netcoreapp2.1
+/DataRetrieve.Filter/bin/Debug/netcoreapp2.1
+/DataRetrieve.DataAccess/bin/Debug/netcoreapp2.1
+/DataRetrieve.ConfigHelper/bin/Debug/netcoreapp2.1
+/DataRetrieve.BusinessLogic/bin/Debug/netcoreapp2.1
+/DataRetrieve/bin/Debug/netcoreapp2.1
+/Capital.Library/bin/Debug/netcoreapp2.1
