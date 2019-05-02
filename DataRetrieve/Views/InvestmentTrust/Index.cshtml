@@ -57,7 +57,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12 col-xs-12" style="margin-top:5px;padding:0px!important">
-                                <input type="button" name="txbSearch" id="txbSearch" value="查詢" class="btn btn-default">
+                                <input type="button" name="txbSearch" id="txbSearch" value="查詢" class="btn btn-default"  onclick="InvestmentTrust.Search()">
                             </div>
                         </div>
                     </div>
@@ -74,7 +74,7 @@
 </body>
 
 </html>
-
+<script src="~/js/InvestmentTrust/InvestmentTrust.js"></script>
 <script>
     var FirstTime = true;
     var code = "";
@@ -82,14 +82,6 @@
         if ('@Html.Raw(MsgCode)') {
             swal("群益投信客戶", "新增"+'@Html.Raw(MsgName)'+"！", '@Html.Raw(MsgCode)'.toUpperCase() == "TRUE"?"success":"error");
         }
-        $("[name=txbSearch]").click(function (event) {
-            $("[name=page]").val(1)
-            $("[name=vNO]").val($("[name=NO]").val())
-            $("[name=vIDNO]").val($("[name=IDNO]").val())
-            $("[name=vNAME]").val($("[name=NAME]").val())
-            $("[type=submit]").click()
-        }).click();
-        
+        InvestmentTrust.Search();
     })
-    
 </script>

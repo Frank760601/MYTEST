@@ -26,7 +26,7 @@
                             <span class="required" aria-required="true">*</span>
                         </label>
                         <div class="col-md-4 col-xs-12" style="padding:0px!important">
-                            @Html.TextBox("NO", null, new { @class = "form-control" })
+                            <input type="text" name="NO" id="NO" class="form-control" onkeyup="InvestmentTrust.FieldKeyUp()">
                             <span id="name-error" class="help-block help-block-error"></span>
                         </div>
                     </div>
@@ -36,7 +36,7 @@
                             <span class="required" aria-required="true">*</span>
                         </label>
                         <div class="col-md-6 col-xs-12" style="padding:0px!important">
-                            @Html.TextBox("NAME", null, new { @class = "form-control" })
+                            <input type="text" name="NAME" id="NAME" class="form-control" onkeyup="InvestmentTrust.FieldKeyUp()">
                             <span id="name-error" class="help-block help-block-error"></span>
                         </div>
                     </div>
@@ -46,7 +46,7 @@
                             <span class="required" aria-required="true">*</span>
                         </label>
                         <div class="col-md-6 col-xs-12" style="padding:0px!important">
-                            @Html.TextBox("IDNO", null, new { @class = "form-control" })
+                            <input type="text" name="IDNO" id="IDNO" class="form-control" onkeyup="InvestmentTrust.FieldKeyUp()">
                             <span id="name-error" class="help-block help-block-error"></span>
                         </div>
                     </div>
@@ -65,56 +65,17 @@
     </div>
     }
 </body>
+<script src="~/js/InvestmentTrust/InvestmentTrust.js"></script>
 <script>
     $(function () { 
-        $("[name=NO],[name=NAME],[name=IDNO]").keyup(function () { 
-            checkField();
-        })
         $("#GoBack").click(function () {
             location.href = "@Url.Action("Index","InvestmentTrust")";
         })
         $("#btnSubmit").click(function (e) { 
             e.preventDefault();
-            if (checkField())
+            var result = InvestmentTrust.FieldKeyUp()
+            if (result)
                 $('form').submit();
         })
     })
-
-    function checkField() { 
-        var check = true;
-        if (!$("[name=NO]").val()) {
-            FieldError("NO", "[編號]為必填")
-            check = check && false;
-        } else if ($("[name=NO]").val().length > 3) {
-            FieldError("NO", "[編號]不可超過3個字元")
-            check = check && false;
-        } else {
-            FieldError("NO")
-        }
-        if (!$("[name=NAME]").val()) {
-            FieldError("NAME", "[客戶名稱]為必填")
-            check = check && false;
-        } else if ($("[name=NAME]").val().length > 50) {
-            FieldError("NAME", "[客戶名稱]不可超過50個字元")
-            check = check && false;
-        } else {
-            FieldError("NAME")
-        }
-        if (!$("[name=IDNO]").val()) {
-            FieldError("IDNO", "[身分證字號或營利事業統一編號]為必填")
-            check = check && false;
-        } else if ($("[name=IDNO]").val().length > 10) {
-            FieldError("IDNO", "[身分證字號或營利事業統一編號]不可超過10個字元")
-            check = check && false;
-        } else {
-            FieldError("IDNO")
-        }
-        return check;
-    }
-    function FieldError(Field, ErrorMsg) {
-        if (ErrorMsg) 
-            $("[name=" + Field + "]").attr("aria-invalid", true).closest("div").find(".help-block-error").html(ErrorMsg).closest(".form-md-line-input").addClass("has-error");
-        else 
-            $("[name=" + Field + "]").attr("aria-invalid", false).closest("div").find(".help-block-error").html('').closest(".form-md-line-input").removeClass("has-error");
-    }
 </script>
